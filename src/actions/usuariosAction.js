@@ -1,8 +1,11 @@
+import axios from 'axios';
 
-export const traerTodos = () => (dispatch) => {
-    //caso que quiero llamar 
+export const traerTodos = () => async (dispatch) => {
+    const response = await axios.get('https://jsonplaceholder.typicode.com/users')
+    //caso que quiero llamar
+    //se comunica con el reducer 
     dispatch({
         type: 'traer_usuarios',
-        payload: [1,2,3]
+        payload: response.data
     })
 }
