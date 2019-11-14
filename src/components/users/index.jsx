@@ -1,14 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import * as usuariosAction from '../../actions/usuariosAction';
 
 class User extends React.Component {
-  // async componentDidMount(){
-  //   const response = await axios.get('https://jsonplaceholder.typicode.com/users')
-  //   this.setState({
-  //     usuarios: response.data
-  //   })
-  // }
+  componentDidMount(){
+    // const response = await axios.get('https://jsonplaceholder.typicode.com/users')
+    // this.setState({
+    //   usuarios: response.data
+    // })
+    this.props.traerTodos();
+  }
 
   ponerFilas = () => (
     this.props.usuarios.map( usuario => (
@@ -21,6 +23,7 @@ class User extends React.Component {
   );
 
   render(){
+    console.log(this.props)
     return(
       <div>
   
@@ -54,4 +57,4 @@ const mapStateToProps = (reducers) =>{
   return reducers.usuariosReducer
 }
 
-export default connect(mapStateToProps, {/* Actions*/})(User);
+export default connect(mapStateToProps, usuariosAction)(User);
