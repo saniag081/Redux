@@ -29,7 +29,7 @@ class User extends React.Component {
 
   render(){
     return(
-      <div className="margen table">
+      <div>
   
         <table className="table">
             <thead>
