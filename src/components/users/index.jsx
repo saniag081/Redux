@@ -1,24 +1,17 @@
 import React from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 class User extends React.Component {
-  constructor(){
-    super()
-    this.state= {
-      usuarios: []
-    }
-
-  }
-
-  async componentDidMount(){
-    const response = await axios.get('https://jsonplaceholder.typicode.com/users')
-    this.setState({
-      usuarios: response.data
-    })
-  }
+  // async componentDidMount(){
+  //   const response = await axios.get('https://jsonplaceholder.typicode.com/users')
+  //   this.setState({
+  //     usuarios: response.data
+  //   })
+  // }
 
   ponerFilas = () => (
-    this.state.usuarios.map( usuario => (
+    this.props.usuarios.map( usuario => (
       <tr key={usuario.id}>
         <td>{usuario.name}</td>
         <td>{usuario.email}</td>
@@ -56,4 +49,9 @@ class User extends React.Component {
 
 }
 
-export default User;
+//mapear el estado al props
+const mapStateToProps = (reducers) =>{
+  return reducers.usuariosReducer
+}
+
+export default connect(mapStateToProps, {/* Actions*/})(User);
